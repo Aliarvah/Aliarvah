@@ -1,0 +1,328 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-mono); }
+.readme-wrapper {
+  background: #0d1117;
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+  color: #e6edf3;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  overflow: hidden;
+}
+.header-bar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 1.5rem;
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot.r { background: #ff5f57; }
+.dot.y { background: #febc2e; }
+.dot.g { background: #28c840; }
+.readme-content {
+  background: #0d1117;
+  color: #c9d1d9;
+  line-height: 1.8;
+}
+.readme-content h1 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #e6edf3;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+}
+.typing {
+  display: inline-block;
+  border-right: 2px solid #58a6ff;
+  animation: blink 0.8s step-end infinite;
+  padding-right: 2px;
+}
+@keyframes blink { 50% { border-color: transparent; } }
+.wave { display: inline-block; animation: wave 2s infinite; transform-origin: 70% 70%; }
+@keyframes wave {
+  0%,100% { transform: rotate(0deg); }
+  15% { transform: rotate(14deg); }
+  30% { transform: rotate(-8deg); }
+  40% { transform: rotate(14deg); }
+  50% { transform: rotate(-4deg); }
+  60% { transform: rotate(10deg); }
+}
+.badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0; }
+.badge {
+  background: #21262d;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #58a6ff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.badge .dot-b { width: 8px; height: 8px; border-radius: 50%; background: #58a6ff; }
+.badge.green .dot-b { background: #3fb950; }
+.badge.green { color: #3fb950; }
+.badge.orange .dot-b { background: #f78166; }
+.badge.orange { color: #f78166; }
+.badge.purple .dot-b { background: #bc8cff; }
+.badge.purple { color: #bc8cff; }
+.section-title {
+  color: #e6edf3;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #21262d;
+}
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin: 0.75rem 0;
+}
+.skill-card {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #c9d1d9;
+  transition: border-color 0.2s;
+  cursor: default;
+}
+.skill-card:hover { border-color: #58a6ff; }
+.skill-icon { font-size: 18px; }
+.about-list { list-style: none; padding: 0; }
+.about-list li {
+  padding: 5px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: #c9d1d9;
+}
+.about-list li span.arrow { color: #58a6ff; flex-shrink: 0; }
+.stats-row {
+  display: flex;
+  gap: 12px;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+.stat-card {
+  flex: 1;
+  min-width: 140px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+.stat-num { font-size: 22px; font-weight: 600; color: #58a6ff; }
+.stat-label { font-size: 11px; color: #8b949e; margin-top: 2px; }
+.copy-btn {
+  background: #21262d;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 6px 14px;
+  color: #c9d1d9;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+  font-family: var(--font-mono);
+}
+.copy-btn:hover { background: #30363d; }
+.copy-btn.copied { color: #3fb950; border-color: #3fb950; }
+.raw-section {
+  margin-top: 1.5rem;
+  background: #010409;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  display: none;
+}
+.raw-section pre {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #c9d1d9;
+  white-space: pre-wrap;
+  word-break: break-all;
+  line-height: 1.6;
+}
+.toggle-btn {
+  background: transparent;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 6px 14px;
+  color: #8b949e;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  transition: color 0.15s, border-color 0.15s;
+}
+.toggle-btn:hover { color: #c9d1d9; border-color: #58a6ff; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+</style>
+
+<div class="readme-wrapper">
+  <div class="header-bar">
+    <div class="dot r"></div>
+    <div class="dot y"></div>
+    <div class="dot g"></div>
+    <span style="margin-left: 8px; color: #8b949e; font-size: 12px;">Aliarvah / README.md</span>
+  </div>
+
+  <div class="readme-content">
+    <h1><span class="wave">👋</span> Hi, I'm <span style="color:#58a6ff">Alireza</span> <span class="typing">_</span></h1>
+    <p style="color:#8b949e; margin: 6px 0 1rem; font-size: 13px;">aka <strong style="color:#c9d1d9">Aliarvah</strong> — Math &amp; CS student from Karaj, Iran 🇮🇷</p>
+
+    <div class="badges">
+      <div class="badge green"><div class="dot-b"></div> Open to learn</div>
+      <div class="badge orange"><div class="dot-b"></div> Game Dev Enthusiast</div>
+      <div class="badge purple"><div class="dot-b"></div> CS @ IAU Karaj</div>
+      <div class="badge"><div class="dot-b"></div> Class of 2028</div>
+    </div>
+
+    <div class="section-title">🧑‍💻 About me</div>
+    <ul class="about-list">
+      <li><span class="arrow">▸</span> Computer Engineering student at Islamic Azad University, Karaj</li>
+      <li><span class="arrow">▸</span> Passionate about game development, cars & coding 🎮🚗</li>
+      <li><span class="arrow">▸</span> Currently building my first Metroidvania game in Unity</li>
+      <li><span class="arrow">▸</span> Learning C++, Python & cybersecurity (CEH)</li>
+      <li><span class="arrow">▸</span> Proud owner of a 1992 Mitsubishi Galant GTI 🏎️</li>
+    </ul>
+
+    <div class="section-title">🛠️ Skills & learning</div>
+    <div class="skill-grid">
+      <div class="skill-card"><span class="skill-icon">⚙️</span> C++</div>
+      <div class="skill-card"><span class="skill-icon">🐍</span> Python</div>
+      <div class="skill-card"><span class="skill-icon">🔐</span> CEH / Security</div>
+      <div class="skill-card"><span class="skill-icon">🎮</span> Game Dev</div>
+      <div class="skill-card"><span class="skill-icon">📐</span> Mathematics</div>
+      <div class="skill-card"><span class="skill-icon">🐙</span> Git & GitHub</div>
+    </div>
+
+    <div class="section-title">🎮 Featured project</div>
+    <div style="background:#161b22; border:1px solid #30363d; border-radius:8px; padding:12px 16px;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+        <span style="font-size:18px;">🕹️</span>
+        <span style="color:#58a6ff; font-weight:600;">Metroidvania-Game</span>
+        <span style="background:#21262d; border:1px solid #30363d; border-radius:12px; padding:2px 8px; font-size:11px; color:#8b949e;">Public</span>
+      </div>
+      <p style="color:#8b949e; font-size:12px;">Action-adventure game with interconnected map, strategic gameplay and immersive storytelling.</p>
+    </div>
+
+    <div class="section-title">📊 GitHub stats</div>
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Repository</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">20</div>
+        <div class="stat-label">Years old</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Motivation</div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem; padding:12px 16px; background:#161b22; border-left:3px solid #58a6ff; border-radius:0 8px 8px 0; font-size:13px; color:#8b949e;">
+      💬 <em>"Code is like a car engine — the more you understand it, the faster you go."</em>
+    </div>
+
+    <div class="actions">
+      <button class="copy-btn" id="copyBtn" onclick="copyReadme()">
+        <i class="ti ti-copy"></i> Copy README code
+      </button>
+      <button class="toggle-btn" onclick="toggleRaw()">
+        <i class="ti ti-code"></i> Show raw markdown
+      </button>
+    </div>
+
+    <div class="raw-section" id="rawSection">
+      <pre id="rawContent"></pre>
+    </div>
+  </div>
+</div>
+
+<script>
+const readme = `# 👋 Hi, I'm Alireza (Aliarvah)
+
+> Computer Engineering student from Karaj, Iran 🇮🇷
+
+![Open to learn](https://img.shields.io/badge/Status-Open%20to%20learn-3fb950?style=flat-square)
+![CS Student](https://img.shields.io/badge/CS%20Student-IAU%20Karaj-bc8cff?style=flat-square)
+![Game Dev](https://img.shields.io/badge/Game%20Dev-Enthusiast-f78166?style=flat-square)
+
+---
+
+## 🧑‍💻 About me
+
+- 🎓 Computer Engineering student at Islamic Azad University, Karaj
+- 🎮 Passionate about game development, cars & coding
+- 🕹️ Currently building my first Metroidvania game
+- 📚 Learning **C++**, **Python** & **CEH (Cybersecurity)**
+- 🚗 Proud owner of a 1992 Mitsubishi Galant GTI
+
+---
+
+## 🛠️ Skills & Learning
+
+\`\`\`
+Languages  : C++  |  Python
+Security   : CEH (Certified Ethical Hacker)
+Tools      : Git, GitHub, Unity
+Interests  : Game Dev, Math, Cars
+\`\`\`
+
+---
+
+## 🎮 Featured Project
+
+### [Metroidvania-Game](https://github.com/Aliarvah/Metroidvania-Game)
+> 🕹️ Action-adventure game with interconnected map, strategic gameplay and immersive storytelling.
+
+---
+
+## 📫 Connect with me
+
+- 🔗 LinkedIn: *coming soon*
+- 🐦 Twitter/X: *coming soon*
+
+---
+
+> *"Code is like a car engine — the more you understand it, the faster you go."*`;
+
+document.getElementById('rawContent').textContent = readme;
+
+function copyReadme() {
+  navigator.clipboard.writeText(readme).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.classList.add('copied');
+    btn.innerHTML = '<i class="ti ti-check"></i> Copied!';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = '<i class="ti ti-copy"></i> Copy README code';
+    }, 2000);
+  });
+}
+
+function toggleRaw() {
+  const raw = document.getElementById('rawSection');
+  raw.style.display = raw.style.display === 'block' ? 'none' : 'block';
+}
+</script>
