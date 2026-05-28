@@ -12,7 +12,6 @@
 
 - 🎓 Computer Engineering student at Islamic Azad University, Karaj
 - 🎮 Passionate about game development, cars & coding
-- 🕹️ Currently building my first Metroidvania game
 - 📚 Learning **C++**, **Python** & **CEH (Cybersecurity)**
 - 🚗 Proud owner of a 1992 Mitsubishi Galant GTI
 
