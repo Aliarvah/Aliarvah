@@ -11,7 +11,7 @@
 ## 🧑‍💻 About me
 
 - 🎓 Computer Engineering student at Islamic Azad University, Karaj
-- 🎮 Passionate about game development, cars & coding
+- 🎮 Passionate about Computer games, cars & coding
 - 📚 Learning **C++**, **Python** & **CEH (Cybersecurity)**
 - 🚗 Proud owner of a 1992 Mitsubishi Galant GTI
 
@@ -24,14 +24,10 @@
 | Languages | C++ · Python |
 | Security | CEH (Certified Ethical Hacker) |
 | Tools | Git · GitHub · Unity |
-| Interests | Game Dev · Math · Cars |
+| Interests | Coding · Computer games · Cars |
 
 ---
 
-## 🎮 Featured Project
-
-### [Metroidvania-Game](https://github.com/Aliarvah/Metroidvania-Game)
-> 🕹️ Action-adventure game with interconnected map, strategic gameplay and immersive storytelling.
 
 ---
 
